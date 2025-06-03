@@ -26,8 +26,17 @@ export default function HomePage() {
         ) : (
           <>
             <p className="mb-2">Hoş geldin, <span className="font-semibold">{session.user?.name || session.user?.email}</span></p>
-            <p className="mb-2 text-sm text-gray-500">Rol: <span className="font-mono">{session.user?.role || "user"}</span></p>
-            
+            <p className="mb-2 text-sm text-gray-500">
+  Rol: <span className="font-mono">
+    {(() => {
+      const role = session.user?.role;
+      if (!role) return "user";
+      if (Array.isArray(role)) return role.join(', ');
+      if (typeof role === "string") return role;
+      return String(role);
+    })()}
+  </span>
+</p>            
             
             <button
               onClick={() => signOut()}
