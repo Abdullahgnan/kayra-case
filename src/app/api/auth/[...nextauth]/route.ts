@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Auth0Provider from 'next-auth/providers/auth0';
 
-export const authOptions = {
+const authOptions = {
   providers: [
     Auth0Provider({
       clientId: process.env.AUTH0_CLIENT_ID!,
@@ -11,6 +11,7 @@ export const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async jwt({ token, account, profile }: any) {
       if (account) {
         token.accessToken = account.access_token;
@@ -18,6 +19,7 @@ export const authOptions = {
       }
       return token;
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async session({ session, token }: any) {
       session.accessToken = token.accessToken;
       session.user.role = token.role; 
