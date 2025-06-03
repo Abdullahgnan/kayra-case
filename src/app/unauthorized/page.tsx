@@ -1,0 +1,10 @@
+export default function UnauthorizedPage() {
+    return (
+      <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div className="bg-white rounded-lg shadow p-8 flex flex-col items-center">
+          <h1 className="text-2xl font-bold mb-4 text-red-600">Yetkisiz Erişim</h1>
+          <p>Bu sayfayı görüntülemek için yeterli yetkiniz yok.</p>
+        </div>
+      </main>
+    );
+  }
